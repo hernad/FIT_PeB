@@ -10,7 +10,8 @@ webshop_3_cart.png
 Easyrec recommendation engine
 ======================================
 
-easyrec_1_tenant.png    
+![tenant ubercart2](https://raw.github.com/hernad/FIT_PeB/master/img/easyrec_1_tenant.png)
+    
 easyrec_2_item.png  
 easyrec_3_item.png    
 easyrec_4_top_ranked.png  
