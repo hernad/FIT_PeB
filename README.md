@@ -57,3 +57,7 @@ Recommend api:
 
 ![easyrec recommend api](https://raw.github.com/hernad/FIT_PeB/master/img/easyrec_9_recommend_api.png)
 
+Recommend plugins (slopeone):
+
+![easyrec plugins](https://raw.github.com/hernad/FIT_PeB/master/img/easyrec_10_plugins.png)
+
