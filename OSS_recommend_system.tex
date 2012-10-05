@@ -34,7 +34,7 @@
 
 \author{Ernad Husremović}
 \brindex{DL 2792}
-\verzija {0.9.0}
+\verzija {0.9.1}
 
 \mentor{mr. Haris Balta}
 
@@ -57,6 +57,7 @@
 % abstract end
 
 \chapter{Uvod}
+\vspace*{-0.7cm}
 
 Cilj ovog seminarskog rada je implementirati webshop rješenje čije su komponente isključivo open source (nadalje OSS) software-a 
 
@@ -65,6 +66,7 @@ Firma "bring.out", implementator sistema je bosanski OSS IT provajder.
 Kompletan portfolio firme je baziran na OSS-u, tako da i ovo rješenje treba zadovoljiti kriterije otvorenosti izvornog koda.
 
 \chapter{Analiza dostupnih OSS komponenti za gradnju rješenja}
+\vspace*{-0.7cm}
 
 \section{Sistemi preporuke}
 
@@ -126,11 +128,7 @@ Drupal je razvojna platforma za različite web sadržaje.
 %\emph{\large{Freedom to create, distribute, and use open source software (OSS).}}
 %\end{center}
 
-%\begin{quotation}
-%\emph{Free software and Open Source seem quite similar, if you look only at their software development practices. At the philosophical level, the difference is extreme. The Free Software Movement is a social movement for computer users' freedom. The Open Source philosophy cites practical, economic benefits. A deeper difference cannot be imagined.}
-%\end{quotation}
-
-\subsection{E-commerce rješenja}
+\subsection{OSS E-commerce rješenja}
 
 Na tržištu postoji više OSS aktivnih drupal e-commerce projekata:
 
@@ -159,7 +157,7 @@ Source code je GPLv2 licenciran kao i sam drupal.
 
 \emph{Ubercart} je svojevrsni "veteran" drupal baziranih e-commerce rješenja. Ubercart v2.x (baziran na drupal 6.x) je vrlo zastupljen e-commerce sistem.
 
-\subsection{integracijske komponente e-commerce <-> sistem preporuke}
+\subsection{Integracijska komponenta (e-commerce <-> sistem preporuke)}
 
 Posljednja komponenta u konstrukciji zadanog sistema je integracijska komponenta e-commerce <-> recommender.
 
@@ -167,7 +165,7 @@ Ubercart ima riješenu integraciju sa easyrec-om kao poseban drupal projekat{\fo
 
 \section{Odabir komponenti}
 
-Easyrec se svojom jednostavnošću i fleksibilnošću odmah nametnuo kao dobar izbor za recommender sistem komponentu. 
+Easyrec se svojom jednostavnošću i fleksibilnošću odmah nametnuo kao dobar izbor za komponentu koja će biti sistem preporuke. 
 Kako za njega postoji i integracijska komponenta sa ubercart-om konačan izbor sistema je:
 \begin{enumerate}
   \item drupal 7.x
@@ -183,9 +181,9 @@ Kako za njega postoji i integracijska komponenta sa ubercart-om konačan izbor s
 %\end{quotation}\\
 
 %\chapter{OSS in Bosnia and Herzegovina}
-%\vspace*{-0.7cm}
 
 \chapter{Instalacija}
+\vspace*{-0.7cm}
 \setlength{\parindent}{0cm}
 %\setlength{\parindent}{default}
 
@@ -214,9 +212,9 @@ Apache web server web root:
 /Applications/XAMPP/htdocs
 \end{lstlisting}
 
-\subsection{Easyrec J2EE aplikacija}
+\subsection{Easyrec web aplikacija}
 
-Easyrec je stanardna J2EE aplikacija (WAR), tako da za njegovu instalaciju trebamo j2ee kompatibilan server. 
+Easyrec je stanardna J2EE\footnote{java enterprise edition} web aplikacija (WAR), tako da za njegovu instalaciju trebamo J2EE aplikacijski server. 
 
 Preporučeni server je tomcat. Instaliramo tomcat, kopiramo easyrec-web.war (ver. 0.97)\footnote{download sa sourceforge repozitorija \url{http://sourceforge.net/projects/easyrec/files/}} u deployment direktorij tomcat servera i na kraju pokrećemo server:
 
@@ -382,9 +380,96 @@ Ovako podešavamo prikaz najviše kupovanih artikala:
 
 Analogno se podešava i prikaz artikala koje su korisnici najviše pregledali.
 
-\chapter {Easyrec sistem preporuke}
+\subsection{Podešenje komunikacije ubercart - easyrec server}
 
-Easyrec{\footnote\url{http://en.wikipedia.org/wiki/Easyrec}} je kompletna aplikacija koja pored implementacije algoritama preporuke ima sopstvenu bazu podataka u koju arhiva i web interfejs za administraciju i monitoring sistema.
+Dodajmo jedan "tenant" u easyrec\footnote{Inače tenant je u prevodu sa engleskog "stanar". U kontekstu easyrec-a, tenant je e-commerce aplikacije koju monitorišemo.}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=12cm]{img/integ_easyrec.png}
+\caption{Kreiranje novog tenanta ubercart3}
+\end{figure}
+
+Povezivanje drupala sa easyrec tenant-om "ubercart3":
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=12cm]{img/integ_drupal.png}
+\caption{podešenje drupal easyrec modula}
+\end{figure}
+
+Nakon ovog podešenja, na easyrec web konzoli uočavamo da sistem bilježi "view" i "buy" akcije.
+
+\chapter{Korištenje sistema}
+\vspace*{-0.7cm}
+
+\section{Definisanje artikla - proizvoda}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=10cm]{img/drupal_add_content_1.png}
+\caption{Dodavanje novog proizvoda / 1}
+\end{figure}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=10cm]{img/drupal_add_content_2.png}
+\caption{Dodavanje novog proizvoda / 2}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=10cm]{img/drupal_add_content_3.png}
+\caption{Dodavanje novog proizvoda / 3}
+\end{figure}
+
+Na kraju, proizvod se prikazuje na naslovnoj stranici našeg web-shopa:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=10cm]{img/drupal_add_content_4.png}
+\caption{Dodavanje novog proizvoda / 4}
+\end{figure}
+
+\section{Prodaja artikala}
+
+Prodaja artikala unutar uberchart webshop rješenja je krajnje jednostavna. Klik na dugme proizvoda i korpa kupca se puni:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=10cm]{img/prodaja.png}
+\caption{Potrošačka korpa "kupca"}
+\end{figure}
+
+Preporuka kupcima
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=10cm]{img/pregled_rezultata_preporuke.png}
+\caption{Preporuka - informacije o najposjećivanijim i najviše kupovanim artiklima}
+\end{figure}
+
+\chapter {Sistem preporuke}
+\vspace*{-0.7cm}
+
+\section{Sistemi preporuke općenito}
+
+Količina informacije koje internet korisnici dobijaju se stalno povećava. To za posljedicu ima sve teže i teže nalaženje relevatnih informacija. 
+Zato su tehnike filterisanja relevatnih informacija dobile na velikoj važnosti. Set algoritama koji nastoje riješit taj problem nazivaju se
+sistemi za kolaborativno filterisanje, odnosno sistemi preporuke (eng. CF - Collaborative Filtering recommender systems). 
+CF algoritmi pohranjuju akcije koje pojedini korsinici vrše nad artiklima.
+Ovi podaci se onda koriste da se generišu grupacije ("susjedstva") sličnih artikala ili korisnika sa pretpostavkom
+da korisnik koji preferira iste stvari (proizvode, usluge) kao i korisnici koji su u bliskom susjedstvu sa njim\citep{bac_wien}
+
+\section{Easyrec sistem preporuke}
+
+Easyrec\footnote{\url{http://en.wikipedia.org/wiki/Easyrec}} je cjelovito rješenje sistema preporuke.
+
+On kombinuje više algoritama za ragniranje artikala, te na osnovu njih davanje preporuke korisnicima sistema.
+
+Easyrec ima sopstvenu bazu artikala prema kojoj vrši proračune. Ona prima podatke o akacijama korisnika nad pojedinim artiklima unutar e-commerce sistema, 
+procesira ih putem algoritama preporuke, te korisnicima vraća rezultat u obliku rang-lista po više različitih kriterija.
 
 Na njihovoj web stranici{\footnote\url{http://easyrec.org}} stoji:
 \begin{quotation}
@@ -424,7 +509,6 @@ Može se reći da su većinu od ovih "easy" obećanja uspjeli postići.
 \includegraphics[width=12cm]{img/easyrec_4_top_ranked.png}
 \caption{Easyrec "top ranked" artikli}
 \end{figure}
-
 
 \begin{figure}[H]
 \centering
@@ -480,10 +564,9 @@ Može se reći da su većinu od ovih "easy" obećanja uspjeli postići.
 \chapter{Software repozitoriji}
 
 \begin{itemize}
+  \item drupal web content framework \url{https://github.com/hernad/drupal}
+  \item easyrec source code \url{https://github.com/hernad/easyrec}
   \item PeB izvorni kod seminarskog rada \url{https://github.com/hernad/FIT\_PeB}
-  \item drupal 7.15 php web content framework  \url{https://github.com/hernad/drupal}
-  \item easyrec \url{https://github.com/hernad/easyrec}
-
 
 \end{itemize}
 
