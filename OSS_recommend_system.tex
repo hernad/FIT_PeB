@@ -30,11 +30,11 @@
 %\titlespacing*{\chapter}{0pt}{-50pt}{18pt}
 %\titleformat{\chapter}[display]{\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge}
 
-\title{OSS e-commerce rješenje sa sistemom preporuke}
+\title{OSS web e-commerce rješenje sa sistemom preporuke}
 
 \author{Ernad Husremović}
 \brindex{DL 2792}
-\verzija {0.9.1}
+\verzija {1.0.0}
 
 \mentor{mr. Haris Balta}
 
@@ -59,9 +59,9 @@
 \chapter{Uvod}
 \vspace*{-0.7cm}
 
-Cilj ovog seminarskog rada je implementirati webshop rješenje čije su komponente isključivo open source (nadalje OSS) software-a 
+Cilj ovog seminarskog rada je implementiracija webshop rješenja čije su komponente isključivo open source (nadalje OSS) software 
 
-Firma "bring.out", implementator sistema je bosanski OSS IT provajder.
+Firma "bring.out", implementator sistema, je bosanski OSS IT provajder.
 
 Kompletan portfolio firme je baziran na OSS-u, tako da i ovo rješenje treba zadovoljiti kriterije otvorenosti izvornog koda.
 
@@ -78,9 +78,9 @@ Najpoznatiji OSS sistemi preporuke su:
   \item Lenskit recommender framework\footnote{\url{http://lenskit.grouplens.org/}}
 \end{itemize}
 
-\emph{Apache mahout} je projekat koji ima reputaciju najkopletnijeg i najkompleksnijeg "recommendation engine"-a 
+\emph{Apache mahout} je projekat koji ima snažnu reputaciju kvalitetnog i fleksibilnog "recommendation engine"-a 
 
-Postoji odična integracija sa drugim projektom popularnim "Apache fondacije" - hadoop-om\footnote{\url{http://hadoop.apache.org}} koji se koristi u za distribuiranu obradu "big data"\footnote{velike količine podataka, najčešće korišteno u  rješenjima "data-mining" sistema}.
+Postoji visoka integracija sa drugim projektom popularnim "Apache fondacije" - hadoop-om\footnote{\url{http://hadoop.apache.org}} koji se koristi u za distribuiranu obradu "big data"\footnote{velike količine podataka, najčešće korišteno u  rješenjima "data-mining" sistema}.
 
 Sva tri pomenuta rješenja su implementirana u programskom jeziku Java.
 
@@ -89,7 +89,7 @@ Sva tri pomenuta rješenja su implementirana u programskom jeziku Java.
 \emph{Easyrec} je započeo kao komercijalni projekat austrijske firme "Studio Smart Agent Technologies". Naknadno je objavljen kao OSS pod GPLv3 licencom. 
 Dobio je više nagrada za inovaciju na području web-a i multimedije\footnote{\url{http://en.wikipedia.org/wiki/Easyrec}}. 
 Easyrec je java aplikacija koja sa webshop rješenjima komunicira putem web servisa (REST ili SOAP), tako da je moguća integracija sa bilo kojim third-party sistemom.
-Sadrži kvalitetan web administrativni interfejs izdvaja od konkurentskih rješenja.
+Sadrži bogat i kvalitetan web administrativni interfejs, što ga definitivno izdvaja u odnosu na konkurentska rješenja.
 
 \begin{figure}[H]
 \centering
@@ -97,19 +97,16 @@ Sadrži kvalitetan web administrativni interfejs izdvaja od konkurentskih rješe
 \caption{Easyrec web interfejs}
 \end{figure}
 
-
-
 \section{Web shop rješenje}
 
-Postoji niz OSS rješenja. Međutim, sa stanovišta proširivosti, "drupal"{\footnote{\url{http://www.drupal.org}} bazirana rješenja su najpopularnija.
+Postoji niz OSS opcija za webshop komponentu. Međutim, sa stanovišta proširivosti, "drupal"{\footnote{\url{http://www.drupal.org}} bazirana rješenja su najpopularnija.
 
 \subsection{Drupal web content framework}
 
 Drupal je "web content framework" napisan u programskom jeziku PHP. 
 
-Često se navodi i da je drupal "CMS"{\footnote{CMS - Content Management System}} software, međutim framework je definitivno bolji opis drupal-a.
-
-Drupal je razvojna platforma za različite web sadržaje.
+Često se navodi i da je drupal "CMS"{\footnote{CMS - Content Management System}} software, međutim \emph{framework} je 
+definitivno bolji opis drupal-a.
 
 \begin{figure}[H]
 \centering
@@ -181,6 +178,290 @@ Kako za njega postoji i integracijska komponenta sa ubercart-om konačan izbor s
 %\end{quotation}\\
 
 %\chapter{OSS in Bosnia and Herzegovina}
+
+\chapter{Glavne funkcije dobijenog rješenja}
+\vspace*{-0.7cm}
+
+\section{Definisanje artikla - proizvoda}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=10cm]{img/drupal_add_content_1.png}
+\caption{Dodavanje novog proizvoda / 1}
+\end{figure}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=10cm]{img/drupal_add_content_2.png}
+\caption{Dodavanje novog proizvoda / 2}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=10cm]{img/drupal_add_content_3.png}
+\caption{Dodavanje novog proizvoda / 3}
+\end{figure}
+
+Na kraju, proizvod se prikazuje na naslovnoj stranici našeg web-shopa:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=10cm]{img/drupal_add_content_4.png}
+\caption{Dodavanje novog proizvoda / 4}
+\end{figure}
+
+\section{Prodaja artikala}
+
+Prodaja artikala unutar uberchart webshop rješenja je krajnje jednostavna. Klik na dugme proizvoda i korpa kupca se puni:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=14cm]{img/prodaja.png}
+\caption{Potrošačka korpa "kupca"}
+\end{figure}
+
+Potvrdom narudžbe se prodaja registruje:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=14cm]{img/review_order.png}
+\caption{Potvrdom narudžbe se registruje prodaja kako u web-shopu tako i u easyrec-u (kao "buy" akcija)}
+\end{figure}
+
+\section{Najposjećeniji artikli (pregledi i kupnja)}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=10cm]{img/pregled_rezultata_preporuke.png}
+\caption{Informacije o artiklima koji se najviše gledaju i kupuju}
+\end{figure}
+
+Međutim, gornji set informacija odnosi se na kompletan webshop, što znači da su gornje informacije identične za sve korisnike.
+
+\section{Korisnički orjentisane preporuke}
+
+Sistem preporuke kod pregleda pojedinačnog artikla treba davati informacije uzimajući u obzir kontekst - treba dati preporuke u kontekstu trenutnog korisnika i artikla koji se gleda.
+
+Samo tako preporuke tipa "drugi najviše kupuju" ili "drugi najviše gledaju" mogu dati pravi efekat" - korisnik će dobiti samo relevantne informacije.
+
+Jednu takvu situacija se može simulirati na sljedeći način:
+\begin{itemize}
+  \item Kao admin unesemo novi artikal (P10)
+  \item Zatim korisnici test1, test2, test3 izvrše pregled tog novog artikla
+  \item Pošto easyrec statistiku ažurira svaka 24h, ručno izvršimo ažuriranje statistike u administracijskoj konzoli
+  \item prijavimo se kao korisnik test4, otiđemo na pregled nekog starog artikla - dobijamo informaciju da su drugi gledali artikal P10. 
+           To je upravo informacija koju korisnik treba.
+  \item Kada se prijavimo kao anonimni korisnik, dobijamo nešto sasvim drugo - čitavu listu artikala koje sistem preporučuje
+  \item Korisnicima koji su već pregledali novi artikal se on više ne nudi\footnote{Treba znati da se ovo konfigurisati u easyrec-u, tako da se artikli ponovo preporučuju korisniku}
+\end{itemize}
+
+Evo prikaza ekrana za gore opisane situacije. Korisnik test4:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=10cm]{img/preporuka_pojavio_se_novi_artikal_p10.png}
+\caption{Sistem preporuke informiše korisnika o novom artiklu, koji su drugi korisnici gledali}
+\end{figure}
+
+Anonimni korisnik:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=10cm]{img/preporuka_anonimni_korisnik.png}
+\caption{Anonimni korisnik dobija čitavu listu artikala kao prijedlog da ih pregleda}
+\end{figure}
+
+\chapter {Sistem preporuke}
+\vspace*{-0.7cm}
+
+\section{Sistemi preporuke, općenito}
+
+Količina informacije koje internet korisnici dobijaju se stalno povećava. To za posljedicu ima sve teže i teže nalaženje relevatnih informacija. 
+Zato su tehnike kojima se obezbjeđuje da korisnici dobijaju samo \emph{relevatne} informacija dobile na velikoj važnosti. 
+Set algoritama koji nastoje riješiti taj problem nazivaju se sistemi za kolaborativno filterisanje, odnosno sistemi preporuke (eng. CF - Collaborative Filtering recommender systems). 
+CF algoritmi pohranjuju akcije koje pojedini korsinici vrše nad artiklima.
+Ovi podaci se onda koriste da se generišu grupacije ("susjedstva") sličnih artikala ili korisnika sa pretpostavkom
+da korisnik želi vidjeti iste stvari (proizvode, usluge) kao i korisnici koji su u bliskom "susjedstvu" sa njim po pitanju ličnih preferencija\citep{bac_wien}
+
+\section{Easyrec sistem preporuke}
+
+Easyrec\footnote{\url{http://en.wikipedia.org/wiki/Easyrec}} je cjelovito rješenje sistema preporuke.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=10cm]{img/Easyrec_architecture.png}
+\caption{Arhitektura easyrec aplikacije (izvor wikipedija)}
+\end{figure}
+
+On sistemom plugin-ova može kombinovati više algoritama za ragniranje artikala, te na osnovu njih davati različite preporuke korisnicima sistema.
+
+Easyrec ima sopstvenu bazu artikala prema kojoj vrši proračune. Ona prima podatke o akacijama korisnika nad pojedinim artiklima unutar e-commerce sistema, 
+procesira ih putem algoritama preporuke, te korisnicima vraća rezultat u obliku rang-lista po više različitih kriterija.
+
+Na njihovoj web stranici\footnote{\url{http://easyrec.org}} stoji:
+
+\begin{quotation}
+easyrec is:
+\begin{itemize}
+\item easy to use - personalize your application within minutes
+\item easy to integrate - due to plugins, a REST API or placing javascript codesnippets in your web pages.
+\item easy to scale - due to distributed architecture
+\item easy to maintain - with the included management application
+\item easyrec is OPEN SOURCE and FREE!
+\end{itemize}
+\end{quotation}
+
+\subsection{Easyrec plugin sistem} 
+
+Aplikacija dolazi sa dva ugrađena plugin-a:
+\begin{itemize}
+  \item Slope one
+  \item ARM (Association Rule Miner)\footnote{baziran na Apriori algoritmu od R. Agrawal 1994}
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=12cm]{img/easyrec_10_plugins.png}
+\caption{Algoritmi koji se primjenjuju su easyrec plugin-ovi}
+\end{figure}
+
+\subsection{Statistika proračuna, sa prikazom primjenjenih algoritama}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=12cm]{img/easyrec_statistika_1.png}
+\caption{eaysrec statistika / 1}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=12cm]{img/easyrec_statistika_2.png}
+\caption{eaysrec statistika / 2}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=12cm]{img/easyrec_statistika_3.png}
+\caption{eaysrec statistika / 3}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=12cm]{img/easyrec_statistika_4.png}
+\caption{eaysrec statistika / 4}
+\end{figure}
+
+\subsection{Data model}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=14cm]{img/easyrec_data_model.png}
+\caption{eaysrec data model\citep{bac_wien}}
+\end{figure}
+
+\subsection{Tenant}
+
+"Tenant" označava aplikaciju kojoj easyrec pruža usluge. U našem slučaju to je naša web-shop aplikacija. 
+\begin{figure}[H]
+\centering
+\includegraphics[width=12cm]{img/easyrec_1_tenant.png}
+\caption{Easyrec "tenant" ubercart2}
+\end{figure}
+
+\subsection{Items}
+
+Items stavke predstavljaju glavni predmet analize sistema preporuke.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=12cm]{img/easyrec_2_item.png}
+\caption{Easyrec "items" koje "tenant" ubercart2 bilježi}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=12cm]{img/easyrec_3_item.png}
+\caption{Easyrec prikaz jednog "item"-a}
+\end{figure}
+
+\subsection{Pregledi dostupni za "items"}
+
+Slijedi pregledi podataka koje easyrec priprema "out-of-box":
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=12cm]{img/easyrec_4_top_ranked.png}
+\caption{Easyrec "top ranked" artikli}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=12cm]{img/easyrec_5_hot_recommend.png}
+\caption{Easyrec preporučeni ("hot recommend") artikli}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=12cm]{img/easyrec_6_item_types.png}
+\caption{Easyrec tipovi "itema" (stavki koje ocjenjujemo i preporučujemo) }
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=12cm]{img/easyrec_7_item_actions.png}
+\caption{Easyrec akcije koje se bilježe za stavke}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=12cm]{img/easyrec_8_item_assoc.png}
+\caption{Easyrec asocijacije između stavki}
+\end{figure}
+
+\chapter{Uočeni problemi}
+
+Testiranje ovog sistema je veoma teško realizovati. Manuelni način koji je korišten za pripremu ovog rada (napraviti više 5 usera, 10 artikala) je veoma zamoran, a uz to rezultati testiranja su nepouzdani.
+
+Tom dijeli bi se u slučaju realizacije produkcijskog sistema morala posvetiti velika pažanja.
+
+Naime, ako bi korisnicima isporučili aplikaciju sa sistemom preporuke koja "laže" korisnike, napravili veću štetu nego korist.
+
+Uočio sam da je u nekim situacijama easyrec "gutao" stavke koje mu je webshop davao. To se redovno dešavalo ako bi se slala veća količina podataka. 
+
+Postojeće rješenje easyrec\_uberchart integracije, po svemu sudeću, ima dosta nedostataka. Tako recimo prilikom prodaje 50 x artikla Proizvod10 klijent šalje serveru 50 zahtjeva.
+
+Ni u "easyrec" javascript API dokumentaciji nisam našao način kako da se informacija proslijedi jednim "requestom".
+
+\chapter{Zaključak}
+
+I pored navedenih problema, dobijeno rješenje predstavlja odličnu osnovu za realizaciju produkcijskog e-commerce rješenja sa sistemom preporuke.
+
+Dostupna OSS rješenja sistema preporuke pružaju mogućnost da kreatori e-commerce aplikacija, bez velikih invensticija u razvoj i testiranje algoritama sistema preporuke, naprave najsavremenija e-commerce rješenja.
+
+Prednosti opensource software-a u ovakvim projektima posebno dolaze do izražaja. 
+Naime, implementacija kvalitetnog "recommender" sistema iz početka bi kod većine projekata bila stavka koja se ne bi mogla uklopiti u budžet.
+
+Iako se ne treba zanemariti napor da se izvrši kvalitetna integracija odgovarajuće OSS "recommender" komponente, ipak je ta opcija kako vremenski, tako i finansijski višestruko bolji izbor.
+
+Tokom izrade seminarskog rada sam napravio prve korake sa "drupal"-om. 
+
+Radi se o iznimno moćnom razvojnom frameworku. Treba ipak naglasiti da je potrebno je dosta vremena da se tim okruženjem ovlada.
+
+Na kraju svega, mislim da je moj izbor komponenti bio dobar.
+
+U nekom novom radnom ciklusu na ovu temu, svakako bi bilo dobro istražiti mogućnosti "drupalcommerce"-a za web-shop i "mahout/taste" framework u ulozi "recommender engine"-a.
+
+Recommender sistemi su bez dvojbe sjajna stvar u e-commerce sistemima. Tačnije u svim sistemima koji rade sa velikim brojek korisnika.
+
+Ako se dobro realiziraju, korisnici će sigurno prepoznati i cijeniti postojanje sistema preporuke.
+
+% -------------------------------------------------
+\bibliography{literatura}
+\bibliographystyle{fit}
+
+% -------------------------------------------------
+\appendix
 
 \chapter{Instalacija}
 \vspace*{-0.7cm}
@@ -399,160 +680,6 @@ Povezivanje drupala sa easyrec tenant-om "ubercart3":
 \end{figure}
 
 Nakon ovog podešenja, na easyrec web konzoli uočavamo da sistem bilježi "view" i "buy" akcije.
-
-\chapter{Korištenje sistema}
-\vspace*{-0.7cm}
-
-\section{Definisanje artikla - proizvoda}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=10cm]{img/drupal_add_content_1.png}
-\caption{Dodavanje novog proizvoda / 1}
-\end{figure}
-
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=10cm]{img/drupal_add_content_2.png}
-\caption{Dodavanje novog proizvoda / 2}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=10cm]{img/drupal_add_content_3.png}
-\caption{Dodavanje novog proizvoda / 3}
-\end{figure}
-
-Na kraju, proizvod se prikazuje na naslovnoj stranici našeg web-shopa:
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=10cm]{img/drupal_add_content_4.png}
-\caption{Dodavanje novog proizvoda / 4}
-\end{figure}
-
-\section{Prodaja artikala}
-
-Prodaja artikala unutar uberchart webshop rješenja je krajnje jednostavna. Klik na dugme proizvoda i korpa kupca se puni:
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=10cm]{img/prodaja.png}
-\caption{Potrošačka korpa "kupca"}
-\end{figure}
-
-Preporuka kupcima
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=10cm]{img/pregled_rezultata_preporuke.png}
-\caption{Preporuka - informacije o najposjećivanijim i najviše kupovanim artiklima}
-\end{figure}
-
-\chapter {Sistem preporuke}
-\vspace*{-0.7cm}
-
-\section{Sistemi preporuke općenito}
-
-Količina informacije koje internet korisnici dobijaju se stalno povećava. To za posljedicu ima sve teže i teže nalaženje relevatnih informacija. 
-Zato su tehnike filterisanja relevatnih informacija dobile na velikoj važnosti. Set algoritama koji nastoje riješit taj problem nazivaju se
-sistemi za kolaborativno filterisanje, odnosno sistemi preporuke (eng. CF - Collaborative Filtering recommender systems). 
-CF algoritmi pohranjuju akcije koje pojedini korsinici vrše nad artiklima.
-Ovi podaci se onda koriste da se generišu grupacije ("susjedstva") sličnih artikala ili korisnika sa pretpostavkom
-da korisnik koji preferira iste stvari (proizvode, usluge) kao i korisnici koji su u bliskom susjedstvu sa njim\citep{bac_wien}
-
-\section{Easyrec sistem preporuke}
-
-Easyrec\footnote{\url{http://en.wikipedia.org/wiki/Easyrec}} je cjelovito rješenje sistema preporuke.
-
-On kombinuje više algoritama za ragniranje artikala, te na osnovu njih davanje preporuke korisnicima sistema.
-
-Easyrec ima sopstvenu bazu artikala prema kojoj vrši proračune. Ona prima podatke o akacijama korisnika nad pojedinim artiklima unutar e-commerce sistema, 
-procesira ih putem algoritama preporuke, te korisnicima vraća rezultat u obliku rang-lista po više različitih kriterija.
-
-Na njihovoj web stranici{\footnote\url{http://easyrec.org}} stoji:
-\begin{quotation}
-easyrec is:
-\begin{itemize}
-\item easy to use - personalize your application within minutes
-\item easy to integrate - due to plugins, a REST API or placing javascript codesnippets in your web pages.
-\item easy to scale - due to distributed architecture
-\item easy to maintain - with the included management application
-\item easyrec is OPEN SOURCE and FREE!
-\end{itemize}
-\end{quotation}
-
-Može se reći da su većinu od ovih "easy" obećanja uspjeli postići.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=12cm]{img/easyrec_1_tenant.png}
-\caption{Easyrec "tenant" ubercart2}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=12cm]{img/easyrec_2_item.png}
-\caption{Easyrec "items" koje "tenant" ubercart2 bilježi}
-\end{figure}
-
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=12cm]{img/easyrec_3_item.png}
-\caption{Easyrec prikaz jednog "item"-a}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=12cm]{img/easyrec_4_top_ranked.png}
-\caption{Easyrec "top ranked" artikli}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=12cm]{img/easyrec_5_hot_recommend.png}
-\caption{Easyrec preporučeni ("hot recommend") artikli}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=12cm]{img/easyrec_6_item_types.png}
-\caption{Easyrec tipovi "itema" (stavki koje ocjenjujemo i preporučujemo) }
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=12cm]{img/easyrec_7_item_actions.png}
-\caption{Easyrec akcije koje se bilježe za stavke}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=12cm]{img/easyrec_8_item_assoc.png}
-\caption{Easyrec asocijacije između stavki}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=12cm]{img/easyrec_9_recommend_api.png}
-\caption{Easyrec API putem koje "third-party" e-commerce aplikacija pristupa}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=12cm]{img/easyrec_10_plugins.png}
-\caption{Algoritmi koji se primjenjuju su easyrec plugin-ovi}
-\end{figure}
-
-
-% -------------------------------------------------
-\bibliography{literatura}
-\bibliographystyle{fit}
-
-% -------------------------------------------------
-\appendix
 
 \chapter{Software toolset}
 \begin{enumerate}

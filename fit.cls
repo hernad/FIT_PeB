@@ -76,7 +76,7 @@
 \else \if@enccp \RequirePackage[cp1250]{inputenc} \fi
 \fi
 
-%\RequirePackage[croatian]{babel}
+\RequirePackage[croatian]{babel}
 \RequirePackage[T1]{fontenc}
 \RequirePackage{graphicx} % Uključeno jer je često korišteno
 \RequirePackage{amssymb} % Uključeno jer je često korišteno
