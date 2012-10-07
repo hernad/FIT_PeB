@@ -84,7 +84,7 @@
 \RequirePackage{fixltx2e}
 \RequirePackage{caption}
 \RequirePackage{ifthen}
-\RequirePackage{url}
+\RequirePackage{url} % Potrebno radi natbiba
 \RequirePackage{enumitem} % Potrebno radi izmjene itemize okoline
 
 % Numeriranje literature kod seminara
@@ -201,7 +201,7 @@
 	{\setlength{\parskip}{0em} \parindent \z@ \raggedright \normalfont
 		\interlinepenalty\@M
 		\ifnum \c@secnumdepth >\m@ne
-			\Huge\bfseries Appendix \thechapter \\ #1
+			\Huge\bfseries Dodatak \thechapter \\ #1
 			\par\nobreak
 		\fi
 		\nobreak
@@ -237,7 +237,7 @@
 	{\setlength{\parskip}{0em} \parindent \z@ \raggedright
 		\normalfont
 		\interlinepenalty\@Mdef
-		\Huge\scshape Appendix \\ #1\par
+		\Huge\scshape Dodatak \\ #1\par
 		\nobreak
 		\vskip 40\p@
 	}
@@ -313,12 +313,11 @@
 		\end{center}\par
 		\vfill
 		\begin{center}
-			{\sffamily\large Mostar, \monthname 
-			%\ifcase\month\or
-			%	januar\or februar\or mart\or april\or maj\or juni\or juli\or avgust\or septembar\or
-            %    oktobar\or novembar\or decembar
-            \fi 
-            \space \number\year.
+			{\sffamily\large Mostar, 
+			\ifcase\month\or
+				januar\or februar\or mart\or april\or maj\or juni\or juli\or avgust\or septembar\or
+                oktobar\or novembar\or decembar
+            \fi \space \number\year.%
 	    	}
 		\end{center}
 	\end{titlepage}%
